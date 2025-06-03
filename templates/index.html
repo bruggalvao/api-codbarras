@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Scanner CodCoz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Scanner CodCoz</h1>
+        <h2>Envie uma imagem com código de barras</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <br><br>
+            <button type="submit">Enviar</button>
+        </form>
+
+        {% if resultado %}
+            <div class="result">
+                <h2>Resultado</h2>
+                <p>Produto: {{ resultado['product_name'] }}</p>
+                <p>Marca: {{ resultado.get('brands', 'Desconhecida') }}</p>
+                <a href="{{ resultado.get('image_front_url', 'Sem imagem') }}">Imagem</a>x
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
